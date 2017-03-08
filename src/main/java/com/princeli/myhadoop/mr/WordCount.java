@@ -49,14 +49,15 @@ public class WordCount {
       }
 
     public static void main(String[] args) throws Exception {
+    	System.setProperty("hadoop.home.dir","D:/software/hadoop-2.7.3" );
     	String input = null;
     	String output = null;
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
  
         if (otherArgs == null || otherArgs.length < 2) {
-        	input = "hdfs://104.129.177.85:9000/user/hadoop/input";
-        	output = "hdfs://104.129.177.85:9000/user/hadoop/output";
+        	input = "hdfs://master:9000/user/root/input";
+        	output = "hdfs://master:9000/user/root/output";
         	conf.addResource("classpath:/hadoop/core-site.xml");
         	conf.addResource("classpath:/hadoop/hdfs-site.xml");
         	conf.addResource("classpath:/hadoop/mapred-site.xml");
