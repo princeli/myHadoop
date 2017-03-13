@@ -49,7 +49,6 @@ public class WordCount {
       }
 
     public static void main(String[] args) throws Exception {
-    	System.setProperty("hadoop.home.dir","D:/software/hadoop-2.7.3" );
     	String input = null;
     	String output = null;
         Configuration conf = new Configuration();

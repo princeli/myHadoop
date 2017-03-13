@@ -33,14 +33,21 @@ public class HdfsDAO {
   
     //启动函数  
     public static void main(String[] args) throws IOException {
-    	System.setProperty("hadoop.home.dir","D:/software/hadoop-2.7.3" );
         JobConf conf = config();  
         HdfsDAO hdfs = new HdfsDAO(conf);  
-        hdfs.mkdirs("/tmp/new/two");
-        hdfs.ls("/tmp/new"); 
+        //hdfs.mkdirs("/tmp/new/two");
+//        hdfs.ls("/tmp/new");
+//        hdfs.copyFile("C:/test.log", "/user/ly/tmp");
+//        hdfs.ls("/tmp/new");
+        
+        //hdfs.download("/tmp/new/text.log", "D:/");
+        
+        hdfs.copyFile("D:/xxx/access.log", "/user/ly/log_kpi/input");
+        hdfs.ls("/user/ly/log_kpi/input"); 
+        
         //hdfs.ls("/user/root/input");  
-        hdfs.createFile("/tmp/new/text.log", "Hello world!!");  
-        hdfs.cat("/tmp/new/text.log");  
+        //hdfs.createFile("/tmp/new/text.log", "Hello world!!");  
+        //hdfs.cat("/tmp/new/text.log");  
           
     }          
       
@@ -108,7 +115,15 @@ public class HdfsDAO {
             IOUtils.closeStream(fsdis);  
             fs.close();  
           }  
-    }  
+    }
+    
+    public void download(String remote, String local) throws IOException {
+        Path path = new Path(remote);
+        FileSystem fs = FileSystem.get(URI.create(hdfsPath), conf);
+        fs.copyToLocalFile(path, new Path(local));
+        System.out.println("download: from" + remote + " to " + local);
+        fs.close();
+    }
       
     public void createFile(String file, String content) throws IOException {  
         Path path = new Path(file);  

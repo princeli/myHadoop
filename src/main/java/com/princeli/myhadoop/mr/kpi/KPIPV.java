@@ -58,14 +58,14 @@ public class KPIPV {
     }
 
     public static void main(String[] args) throws Exception {
-    	String input = "hdfs://104.129.177.85:9000/user/hadoop/log_kpi/input";
-        String output = "hdfs://104.129.177.85:9000/user/hadoop/log_kpi/pv";
+    	String input = "hdfs://master:9000/user/ly/log_kpi/input";
+        String output = "hdfs://master:9000/user/ly/log_kpi/pv";
 
         JobConf conf = new JobConf(KPIPV.class);
         conf.setJobName("KPIPV");
         conf.addResource("classpath:/hadoop/core-site.xml");
         conf.addResource("classpath:/hadoop/hdfs-site.xml");
-        //conf.addResource("classpath:/hadoop/mapred-site.xml");
+        conf.addResource("classpath:/hadoop/mapred-site.xml");
 
         conf.setMapOutputKeyClass(Text.class);
         conf.setMapOutputValueClass(IntWritable.class);

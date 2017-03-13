@@ -129,31 +129,38 @@ public class KPI {
     }
     
     private static KPI parser(String line) {
-        System.out.println(line);
-        KPI kpi = new KPI();
-        String[] arr = line.split(" ");
-        if (arr.length > 11) {
-            kpi.setRemote_addr(arr[0]);
-            kpi.setRemote_user(arr[1]);
-            kpi.setTime_local(arr[3].substring(1));
-            kpi.setRequest(arr[6]);
-            kpi.setStatus(arr[8]);
-            kpi.setBody_bytes_sent(arr[9]);
-            kpi.setHttp_referer(arr[10]);
-            
-            if (arr.length > 12) {
-                kpi.setHttp_user_agent(arr[11] + " " + arr[12]);
-            } else {
-                kpi.setHttp_user_agent(arr[11]);
-            }
+		KPI kpi = new KPI();
+		try {
+			System.out.println(line);
 
-            if (Integer.parseInt(kpi.getStatus()) >= 400) {// 大于400，HTTP错误
-                kpi.setValid(false);
-            }
-        } else {
-            kpi.setValid(false);
-        }
-        return kpi;
+			String[] arr = line.split(" ");
+			if (arr.length > 11) {
+				kpi.setRemote_addr(arr[0]);
+				kpi.setRemote_user(arr[1]);
+				kpi.setTime_local(arr[3].substring(1));
+				kpi.setRequest(arr[6]);
+				kpi.setStatus(arr[8]);
+				kpi.setBody_bytes_sent(arr[9]);
+				kpi.setHttp_referer(arr[10]);
+
+				if (arr.length > 12) {
+					kpi.setHttp_user_agent(arr[11] + " " + arr[12]);
+				} else {
+					kpi.setHttp_user_agent(arr[11]);
+				}
+				if (Integer.parseInt(kpi.getStatus()) >= 400) {// 大于400，HTTP错误
+					kpi.setValid(false);
+				}
+			} else {
+				kpi.setValid(false);
+			}
+
+		} catch (Exception e) {
+			kpi.setValid(false);
+		} finally {
+
+		}
+		return kpi;
     }
     
     /**

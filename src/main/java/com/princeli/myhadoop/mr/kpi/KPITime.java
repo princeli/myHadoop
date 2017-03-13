@@ -59,8 +59,8 @@ public class KPITime {
     }
 
     public static void main(String[] args) throws Exception {
-    	String input = "hdfs://104.129.177.85:9000/user/hadoop/log_kpi/input";
-        String output = "hdfs://104.129.177.85:9000/user/hadoop/log_kpi/time";
+    	String input = "hdfs://master:9000/user/ly/log_kpi/input";
+        String output = "hdfs://master:9000/user/ly/log_kpi/time";
 
         JobConf conf = new JobConf(KPITime.class);
         conf.setJobName("KPITime");

@@ -56,8 +56,8 @@ public class KPIIP {
     }
 
     public static void main(String[] args) throws Exception {
-    	String input = "hdfs://104.129.177.85:9000/user/hadoop/log_kpi/input";
-        String output = "hdfs://104.129.177.85:9000/user/hadoop/log_kpi/ip";
+    	String input = "hdfs://master:9000/user/ly/log_kpi/input";
+        String output = "hdfs://master:9000/user/ly/log_kpi/ip";
 
         JobConf conf = new JobConf(KPIIP.class);
         conf.setJobName("KPIIP");
